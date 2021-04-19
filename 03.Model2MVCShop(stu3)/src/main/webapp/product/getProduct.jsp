@@ -135,9 +135,9 @@ if(user != null) {
 					</td>
 					<%
 					System.out.println("get jsp MENU -> " + menu);
-					System.out.println("권한 로그인->"+role);
+					//System.out.println("권한 로그인->"+role);
 					
-			        if(role.equals("admin")){
+			        if("manage".equals(menu)){
 		             %>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
 						<a href="/updateProductView.do?prodNo=<%=productVO.getProdNo()%>">수정</a>

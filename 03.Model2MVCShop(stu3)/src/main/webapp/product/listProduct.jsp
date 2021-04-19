@@ -125,7 +125,11 @@
 		<td align="center"><%= i + 1 %></td>
 		<td></td>
 		<td align="left">
-			<a href="/getProduct.do?prodNo=<%=productVO.getProdNo() %>"><%= productVO.getProdName() %></a>
+		<%if("search".equals(menu)){%>
+			<a href="/getProduct.do?prodNo=<%=productVO.getProdNo() %>&menu=search"><%= productVO.getProdName() %></a>
+			<%}else{ %>
+			<a href="/getProduct.do?prodNo=<%=productVO.getProdNo() %>&menu=manage"><%= productVO.getProdName() %></a>
+			<%} %>
 		</td>
 		<td></td>
 		<td align="left"><%= productVO.getPrice() %></td>
