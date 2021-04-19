@@ -3,11 +3,11 @@
 <%@ page import="com.model2.mvc.service.domain.User" %>
 
 <%
-	User vo=(User)session.getAttribute("user");
+	User user=(User)session.getAttribute("user");
 	String role="";
 	
-	if(vo != null) {
-		role=vo.getRole();
+	if(user != null) {
+		role=user.getRole();
 	}
 %>
 
@@ -33,10 +33,10 @@ function history(){
 <tr>
 <td valign="top"> 
 	<table  border="0" cellspacing="0" cellpadding="0" width="159" >	
-		<% 	if(vo != null){ %>
+		<% 	if(user != null){ %>
 		<tr>
 			<td class="Depth03">
-				<a href="/getUser.do?userId=<%=vo.getUserId() %>" target="rightFrame">개인정보조회</a>
+				<a href="/getUser.do?userId=<%=user.getUserId() %>" target="rightFrame">개인정보조회</a>
 			</td>
 		</tr>
 		<%	}  %>
@@ -86,7 +86,7 @@ function history(){
 					<a href="/listProduct.do?menu=search" target="rightFrame">상 품 검 색</a>
 				</td>
 			</tr>
-			<%	if(vo != null && role.equals("user")){%>
+			<%	if(user != null && role.equals("user")){%>
 			<tr>
 				<td class="Depth03">
 					<a href="/listPurchase.do"  target="rightFrame">구매이력조회</a>
