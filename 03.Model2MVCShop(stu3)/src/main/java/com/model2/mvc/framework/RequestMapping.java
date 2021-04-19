@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-
 public class RequestMapping {
 	
 	///Field
@@ -25,7 +24,7 @@ public class RequestMapping {
 			properties.load(in);
 		}catch(Exception ex){
 			System.out.println(ex);
-			throw new RuntimeException("actionmapping.properties ÆÄÀÏ ·Îµù ½ÇÆĞ :"  + ex);
+			throw new RuntimeException("actionmapping.properties íŒŒì¼ë¡œë”© ì‹¤íŒ¨  :"  + ex);
 		}finally{
 			if(in != null){
 				try{ 
@@ -62,11 +61,11 @@ public class RequestMapping {
 					map.put(path, (Action)obj);
 					action = (Action)obj;
 				}else{
-					throw new ClassCastException("ClassÇüº¯È¯½Ã ¿À·ù ¹ß»ı  ");
+					throw new ClassCastException("Class í˜• ë³€í™˜ì‹œ ì˜¤ë¥˜ ë°œìƒ  ");
 				}
 			}catch(Exception ex){
 				System.out.println(ex);
-				throw new RuntimeException("ActionÁ¤º¸¸¦ ±¸ÇÏ´Â µµÁß ¿À·ù ¹ß»ı : " + ex);
+				throw new RuntimeException("Action ì •ë³´ êµ¬í•˜ëŠ”ë„ì¤‘ ì˜¤ë¥˜ ë°œìƒ  : " + ex);
 			}
 		}
 		return action;
