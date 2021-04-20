@@ -7,6 +7,7 @@ import com.model2.mvc.service.user.UserService;
 import com.model2.mvc.service.user.dao.UserDao;
 import com.model2.mvc.service.domain.User;
 
+
 public class UserServiceImpl implements UserService{
 	
 	///Field
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService{
 			User dbUser=userDao.findUser(user.getUserId());
 
 			if(! dbUser.getPassword().equals(user.getPassword())){
-				throw new Exception(" ë¡œê·¸ì¸ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ");
+				throw new Exception("·Î±×ÀÎ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 			}
 			
 			return dbUser;

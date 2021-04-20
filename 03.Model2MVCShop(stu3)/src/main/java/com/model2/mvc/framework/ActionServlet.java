@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.model2.mvc.common.util.HttpUtil;
 
+
 public class ActionServlet extends HttpServlet {
 	
 	///Field
@@ -28,11 +29,11 @@ public class ActionServlet extends HttpServlet {
 		
 		String url = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String requestPath = url.substring(contextPath.length());
-		System.out.println("\nActionServlet.service() RequestURI : "+requestPath);
+		String reqeustPath = url.substring(contextPath.length());
+		System.out.println("\nActionServlet.service() RequestURI : "+reqeustPath);
 		
 		try{
-			Action action = requestMapping.getAction(requestPath);
+			Action action = requestMapping.getAction(reqeustPath);
 			action.setServletContext(getServletContext());
 			
 			String resultPage=action.execute(request, response);

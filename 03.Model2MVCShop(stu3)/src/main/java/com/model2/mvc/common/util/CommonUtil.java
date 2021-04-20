@@ -4,7 +4,14 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class CommonUtil {
+	
+	///Field
+	
+	///Constructor
+	
+	///Method
 	public static String null2str(String org, String converted) {
 		if (org == null || org.trim().length() == 0)
 			return converted;
