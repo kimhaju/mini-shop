@@ -19,8 +19,8 @@ public class HttpUtil {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 		}catch(Exception ex){
-			System.out.println("forward ¿À·ù : " + ex);
-			throw new RuntimeException("forward ¿À·ù : " + ex);
+			System.out.println("forward ì „ì†¡ ì˜¤ë¥˜ : " + ex);
+			throw new RuntimeException("forward ì „ì†¡ ì˜¤ë¥˜ : " + ex);
 		}
 	}
 	
@@ -28,8 +28,8 @@ public class HttpUtil {
 		try{
 			response.sendRedirect(path);
 		}catch(Exception ex){
-			System.out.println("redirect ¿À·ù : " + ex);
-			throw new RuntimeException("redirect ¿À·ù  : " + ex);
+			System.out.println("redirect ì „ì†¡ ì˜¤ë¥˜  : " + ex);
+			throw new RuntimeException("redirect ì „ì†¡ ì˜¤ë¥˜   : " + ex);
 		}
 	}
 }
