@@ -17,8 +17,8 @@ public class GetProductAction extends Action{
 												HttpServletResponse response) throws Exception {
 		
 	    int prodNo = Integer.parseInt(request.getParameter("prodNo"));
-	    //String search = request.getParameter("search");
-	    //String manage = request.getParameter("manage");
+	    String search = request.getParameter("search");
+	    String manage = request.getParameter("manage");
 	   
 		ProductService service=new ProductServiceImpl();
 		ProductVO productVO = service.getProduct(prodNo);
@@ -26,6 +26,9 @@ public class GetProductAction extends Action{
 	
 		String menu=request.getParameter("menu");
 		request.setAttribute("menu", menu);
+		request.setAttribute("search", search);
+		request.setAttribute("manage", manage);
+		
 	
 		System.out.println("get 메뉴에 찍히는거 확인-> "+ menu);
 	

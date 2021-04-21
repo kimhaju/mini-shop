@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-
-    <%@ page import="com.model2.mvc.service.product.vo.*" %>
-
-<%
-	ProductVO productVO=(ProductVO)request.getAttribute("productVO");
-%>
-
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
+ 
 <html>
 <head>
 <title>상품정보 수정</title>
-
+ 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
-
+ 
 <script type="text/javascript" src="../javascript/calendar.js">
 </script>
-
+ 
 <script type="text/javascript">
 <!--
 function fncUpdateProduct(){
@@ -24,7 +21,7 @@ function fncUpdateProduct(){
 	var detail = document.detailForm.prodDetail.value;
 	var manuDate = document.detailForm.manuDate.value;
 	var price = document.detailForm.price.value;
-
+ 
 	if(name == null || name.length<1){
 		alert("상품명은 반드시 입력하여야 합니다.");
 		return;
@@ -41,24 +38,24 @@ function fncUpdateProduct(){
 		alert("가격은 반드시 입력하셔야 합니다.");
 		return;
 	}
-
+ 
 	document.detailForm.action='/updateProduct.do';
 	document.detailForm.submit();
 }
-
+ 
 function resetData(){
 	document.detailForm.reset();
 }
 -->
 </script>
 </head>
-
+ 
 <body bgcolor="#ffffff" text="#000000">
-
+ 
 <form name="detailForm"  method="post" >
-
-<input type="hidden" name="prodNo" value="<%=productVO.getProdNo() %>">
-
+ 
+<input type="hidden" name="prodNo" value="${productVO.prodNo}">
+ 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td width="15" height="37">
@@ -75,7 +72,7 @@ function resetData(){
 		<td width="12" height="37"><img src="/images/ct_ttl_img03.gif" width="12" height="37"></td>
 	</tr>
 </table>
-
+ 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:13px;">
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -89,7 +86,7 @@ function resetData(){
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 					<td width="105">
-						<input 	type="text" name="prodName"  value="<%=productVO.getProdName() %>" class="ct_input_g" 
+						<input 	type="text" name="prodName"  value="${productVO.prodName}" class="ct_input_g" 
 										style="width: 100px; height: 19px" maxLength="50" >
 					</td>
 				</tr>
@@ -106,7 +103,7 @@ function resetData(){
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="prodDetail" value="<%=productVO.getProdDetail() %>" class="ct_input_g" 
+			<input type="text" name="prodDetail" value="${productVO.prodDetail}" class="ct_input_g" 
 						style="width:100px; height:19px"  maxLength="50" >
 		</td>
 	</tr>
@@ -119,13 +116,13 @@ function resetData(){
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="manuDate"  readonly="readonly" value="<%=productVO.getManuDate() %>" class="ct_input_g"  
+			<input type="text" name="manuDate"  readonly="readonly" value="${productVO.manuDate}" class="ct_input_g"  
 						style="width: 100px; height: 19px"	maxLength="10" minLength="6"/>
 				&nbsp;<img src="../images/ct_icon_date.gif" width="15" height="15" 
 										onclick="show_calendar('document.detailForm.manuDate', document.detailForm.manuDate.value)"/>
 		</td>
 	</tr>
-
+ 
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
@@ -136,7 +133,7 @@ function resetData(){
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="26">
-						<input 	type="text" name="price" value="<%=productVO.getPrice() %>" class="ct_input_g" 
+						<input 	type="text" name="price" value="${productVO.price}" class="ct_input_g" 
 										style="width:100px; height:19px" maxLength="50"/>&nbsp;원
 					</td>
 				</tr>
@@ -153,7 +150,7 @@ function resetData(){
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="26">
-						<input 	type="text" name="fileName" value="<%=productVO.getFileName() %>" class="ct_input_g" 
+						<input 	type="text" name="fileName" value="${productVO.fileName}" class="ct_input_g" 
 										style="width:100px; height:19px" maxLength="13">
 					</td>
 				</tr>
@@ -164,7 +161,7 @@ function resetData(){
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 </table>
-
+ 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
 	<tr>
 		<td width="53%"></td>
@@ -196,6 +193,6 @@ function resetData(){
 	</tr>
 </table>
 </form>
-
+ 
 </body>
 </html>

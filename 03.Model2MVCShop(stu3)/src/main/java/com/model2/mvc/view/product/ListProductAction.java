@@ -18,7 +18,7 @@ public class ListProductAction extends Action{
 	public String execute(	HttpServletRequest request,
 												HttpServletResponse response) throws Exception {
 		Search search=new Search();
-		//String manage=request.getParameter("manage");
+		String manage=request.getParameter("manage");
 		
 		int currentPage=1;
 		if(request.getParameter("currentPage") != null)
@@ -48,6 +48,7 @@ public class ListProductAction extends Action{
 		
 		String menu = request.getParameter("menu");
 		request.setAttribute("menu", menu); //이거 지우지 마라. 
+		request.setAttribute("manage", manage);
 		System.out.println("list 리스트 메뉴값 "+menu);
 		
 		return "forward:/product/listProduct.jsp";	

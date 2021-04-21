@@ -9,18 +9,21 @@
  
 	// 검색 / page 두가지 경우 모두 Form 전송을 위해 JavaScrpt 이용  
  
+<!--
 	function fncProductList(currentPage) {
  
 		document.getElementById("currentPage").value = currentPage;
  
 	   	document.detailForm.submit();		
 	}
+	
+-->
  
 </script>
 </head>
 <body bgcolor="#ffffff" text="#000000">
 <div style="width:98%; margin-left:10px;">
-<form name="detailForm" action="/listProduct.do" method="post">
+<form name="detailForm" action="/listProduct.do?menu=${menu}" method="post">
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
 		<td width="15" height="37">
@@ -53,6 +56,7 @@
 			<select name="searchCondition" class="ct_input_g" style="width:80px">
 				<option value="0" ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>상품번호</option>
 				<option value="1" ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>상품명</option>
+				
 			</select>
 			<input type="text" name="searchKeyword" 
 						value="${! empty search.searchKeyword ? search.searchKeyword :""}"  
@@ -80,35 +84,35 @@
 	<tr>
 		<td class="ct_list_b" width="100">No</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">상품 번호</td>
-		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">상품명</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">상품 설명 </td>		
+		<td class="ct_list_b" width="150">상품가격</td>
+		<td class="ct_line02"></td>
+		<td class="ct_list_b" >등록일</td>
+		<td class="ct_line02"></td>
+		<td class="ct_list_b">현재상태</td>
+			
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>
 	</tr>
 	<c:set var="i" value="0" />
-	<c:forEach var="product" items="${list}">
-		<c:set var="i" value="${ i+1 }" />
+	<c:forEach var="productVO" items="${list}">
+		<c:set var="i" value="${i+1}"/>
 		<tr class="ct_list_pop">
-			<td align="center">${ i }</td>
+			<td align="center">${i}</td>
 			<td></td>
-			<c:choose>
-				<c:when test="${menu.equals('manage')}">
-			<td align="left"><a href="/getProduct.do?prodNo=${product.prodNo}&menu=manage">${product.prodName}</a></td>
-			</c:when>
-			<c:otherwise>
-			<td align="left"><a href="/getProduct.do?prodNo=${product.prodNo}&menu=search">${product.prodName}</a></td>
-			</c:otherwise>
-			</c:choose>
- 
+		
+				<c:if test="${menu.equals('manage')}">
+			<td align="left"><a href="/getProduct.do?prodNo=${productVO.prodNo}&menu=manage">${productVO.prodName}</a></td>
+			</c:if>
+			<c:if test="${menu.equals('search')}">
+			<td align="left"><a href="/getProduct.do?prodNo=${productVO.prodNo}&menu=search">${productVO.prodName}</a></td>
+			</c:if>
 			<td></td>
-			<td align="left">${product.price}</td>
+			<td align="left">${productVO.price}</td>
 			<td></td>
-			<td align="left">${product.prodDetail}
-			</td>		
+			<td align="left">${productVO.manuDate}</td>		
 		</tr>
 		<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
