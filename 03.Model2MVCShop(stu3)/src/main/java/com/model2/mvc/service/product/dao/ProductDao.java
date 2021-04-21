@@ -88,7 +88,13 @@ public ProductVO findProduct(int prodNo) throws Exception {
 			} else if (search.getSearchCondition().equals("1") && !search.getSearchKeyword().equals("")) {
 				sql += " where PROD_NAME='" + search.getSearchKeyword()
 						+ "'";
+			} else if (search.getSearchCondition().equals("2") && !search.getSearchKeyword().equals("")) {
+				sql += " WHERE price='" + search.getSearchKeyword()
+				+ "'";
+			} else {
+				System.out.println("search 실패. 없는 결과값");
 			}
+			
 		}
 		sql += "ORDER BY prod_no";
 		System.out.println("productDao: "+sql);

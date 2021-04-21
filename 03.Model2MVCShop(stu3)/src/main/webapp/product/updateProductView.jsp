@@ -119,7 +119,7 @@ function resetData(){
 			<input type="text" name="manuDate"  readonly="readonly" value="${productVO.manuDate}" class="ct_input_g"  
 						style="width: 100px; height: 19px"	maxLength="10" minLength="6"/>
 				&nbsp;<img src="../images/ct_icon_date.gif" width="15" height="15" 
-										onclick="show_calendar('document.detailForm.manuDate', document.detailForm.manuDate.value)"/>
+										onclick="show_calendar('document.detailForm.manuDate',document.detailForm.manuDate.value)"/>
 		</td>
 	</tr>
  
