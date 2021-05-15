@@ -113,7 +113,7 @@
 			<td></td>
 			<td align="left">${productVO.price}</td>
 			<td></td>
-			<td align="left">${productVO.manuDate}</td>		
+			<td align="left">${productVO.regDate}</td>		
 		</tr>
 		<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
