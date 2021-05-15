@@ -54,7 +54,7 @@ function resetData(){
  
 <form name="detailForm"  method="post" >
  
-<input type="hidden" name="prodNo" value="${productVO.prodNo}">
+<input type="hidden" name="prodNo" value="${product.prodNo}">
  
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -86,7 +86,7 @@ function resetData(){
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 					<td width="105">
-						<input 	type="text" name="prodName"  value="${productVO.prodName}" class="ct_input_g" 
+						<input 	type="text" name="prodName"  value="${product.prodName}" class="ct_input_g" 
 										style="width: 100px; height: 19px" maxLength="50" >
 					</td>
 				</tr>
@@ -103,7 +103,7 @@ function resetData(){
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="prodDetail" value="${productVO.prodDetail}" class="ct_input_g" 
+			<input type="text" name="prodDetail" value="${product.prodDetail}" class="ct_input_g" 
 						style="width:100px; height:19px"  maxLength="50" >
 		</td>
 	</tr>
@@ -116,7 +116,7 @@ function resetData(){
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="manuDate"  readonly="readonly" value="${productVO.manuDate}" class="ct_input_g"  
+			<input type="text" name="manuDate"  readonly="readonly" value="${product.manuDate}" class="ct_input_g"  
 						style="width: 100px; height: 19px"	maxLength="10" minLength="6"/>
 				&nbsp;<img src="../images/ct_icon_date.gif" width="15" height="15" 
 										onclick="show_calendar('document.detailForm.manuDate',document.detailForm.manuDate.value)"/>
@@ -133,7 +133,7 @@ function resetData(){
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="26">
-						<input 	type="text" name="price" value="${productVO.price}" class="ct_input_g" 
+						<input 	type="text" name="price" value="${product.price}" class="ct_input_g" 
 										style="width:100px; height:19px" maxLength="50"/>&nbsp;¿ø
 					</td>
 				</tr>
@@ -150,7 +150,7 @@ function resetData(){
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="26">
-						<input 	type="text" name="fileName" value="${productVO.fileName}" class="ct_input_g" 
+						<input 	type="text" name="fileName" value="${product.fileName}" class="ct_input_g" 
 										style="width:100px; height:19px" maxLength="13">
 					</td>
 				</tr>

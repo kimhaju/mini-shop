@@ -86,13 +86,24 @@ function history(){
 					<a href="/listProduct.do?menu=search" target="rightFrame">상 품 검 색</a>
 				</td>
 			</tr>
-			<%	if(user != null && role.equals("user")){%>
+			<%
+			if(user != null){
+				if(role.equals("user")){
+		%>
+		<tr>
+			<td class="Depth03">
+				<a href="/listPurchase.do" target="rightFrame">구매이력 조회</a>
+			</td>
+		</tr>
+		<%}else if(role.equals("admin")){%>
 			<tr>
-				<td class="Depth03">
-					<a href="/listPurchase.do"  target="rightFrame">구매이력조회</a>
-				</td>
-			</tr>
-			<%  }%>
+			<td class="Depth03">
+				<a href="/listSale.do" target="rightFrame">판매이력 조회</a>
+			</td>
+		</tr>
+			
+		<% }%>
+		<%} %>
 			<tr>
 				<td class="DepthEnd">&nbsp;</td>
 			</tr>

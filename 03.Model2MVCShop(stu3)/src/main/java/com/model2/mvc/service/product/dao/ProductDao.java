@@ -10,37 +10,35 @@ import java.util.List;
  
 import com.model2.mvc.common.Search;
 import com.model2.mvc.common.util.DBUtil;
-import com.model2.mvc.service.product.vo.ProductVO;
+import com.model2.mvc.service.domain.Product;
  
 public class ProductDao {
 	
 	public ProductDao(){
 	}
-	public void insertProduct(ProductVO productVO) throws Exception {
+	public void insertProduct(Product product) throws Exception {
 		
 		Connection con = DBUtil.getConnection();
 	
 		String sql = " INSERT INTO product VALUES (seq_product_prod_no.nextval,?,?,?,?,?,SYSDATE )";
 		
 		PreparedStatement pStmt = con.prepareStatement(sql);
-		pStmt.setString(1,productVO.getProdName());
-		pStmt.setString(2,productVO.getProdDetail());
-		pStmt.setString(3,productVO.getManuDate().replace("-", ""));
-		
-		
-		pStmt.setInt(4,productVO.getPrice());
-		pStmt.setString(5,productVO.getFileName());
+		pStmt.setString(1,product.getProdName());
+		pStmt.setString(2,product.getProdDetail());
+		pStmt.setString(3,product.getManuDate().replace("-", ""));
+		pStmt.setInt(4,product.getPrice());
+		pStmt.setString(5,product.getFileName());
 		pStmt.executeUpdate();
 		
 		pStmt.close();
 		con.close();
 		
-		System.out.println(sql);
+		System.out.println("상품 추가 쿼리문: "+sql);
 		System.out.println(pStmt+"값 들어가는 거 확인.");
 		
 	}
 	
-public ProductVO findProduct(int prodNo) throws Exception {
+public Product findProduct(int prodNo) throws Exception {
 		
 		Connection con = DBUtil.getConnection();
  
@@ -54,48 +52,48 @@ public ProductVO findProduct(int prodNo) throws Exception {
  
 		ResultSet rs = pStmt.executeQuery();
  
-		ProductVO productVO = null;
+		Product product = null;
 		
 		while (rs.next()) {
-			productVO = new ProductVO();
-			productVO.setProdNo(rs.getInt("prod_no"));
-			productVO.setProdName(rs.getString("prod_name"));
-			productVO.setProdDetail(rs.getString("prod_detail"));
-			productVO.setManuDate(rs.getString("manufacture_day"));
-			productVO.setPrice(rs.getInt("price"));
-			productVO.setFileName(rs.getString("image_file"));
-			productVO.setRegDate(rs.getDate("reg_date"));
+			product = new Product();
+			product.setProdNo(rs.getInt("prod_no"));
+			product.setProdName(rs.getString("prod_name"));
+			product.setProdDetail(rs.getString("prod_detail"));
+			product.setManuDate(rs.getString("manufacture_day"));
+			product.setPrice(rs.getInt("price"));
+			product.setFileName(rs.getString("image_file"));
+			product.setRegDate(rs.getDate("reg_date"));
 		}
 		rs.close();
 		pStmt.close();
 		con.close();
  
-		return productVO;
+		return product;
 	}
  
 	public Map<String,Object> getProductList(Search search) throws Exception {
 		
 		Map<String , Object>  map = new HashMap<String, Object>();
 		
-		Connection con = DBUtil.getConnection();
+        Connection con = DBUtil.getConnection();
 		
-		String sql = "SELECT prod_no, prod_name, price, manufacture_day, reg_date FROM product ";
-		
+		String sql = "SELECT nvl(tran_status_code, 0) AS tra, p.prod_no, p.prod_name, p.reg_date, p.price "
+				+ " FROM product p FULL OUTER JOIN transaction t "
+				+ " ON p.prod_no = t.prod_no ";
 		if (search.getSearchCondition() != null) {
 			if (search.getSearchCondition().equals("0") && !search.getSearchKeyword().equals("")) {
-				sql += " where PROD_NO='" + search.getSearchKeyword()
+				sql += " WHERE prod_no='" + search.getSearchKeyword()
 						+ "'";
 			} else if (search.getSearchCondition().equals("1") && !search.getSearchKeyword().equals("")) {
-				sql += " where PROD_NAME='" + search.getSearchKeyword()
+				sql += " WHERE prod_name='" + search.getSearchKeyword()
 						+ "'";
 			} else if (search.getSearchCondition().equals("2") && !search.getSearchKeyword().equals("")) {
-				sql += " WHERE price='" + search.getSearchKeyword()
-				+ "'";
-			} else {
-				System.out.println("search 실패. 없는 결과값");
+				sql += " WHERE price='" +search.getSearchKeyword()
+				        + "'";
+				
 			}
-			
 		}
+		
 		sql += "ORDER BY prod_no";
 		System.out.println("productDao: "+sql);
 		
@@ -108,16 +106,18 @@ public ProductVO findProduct(int prodNo) throws Exception {
 	
 		System.out.println(search);
  
-		List<ProductVO> list = new ArrayList<ProductVO>();
+		List<Product> list = new ArrayList<Product>();
 		
 		while(rs.next()){
-			ProductVO productVO = new ProductVO();
-			productVO.setProdNo(rs.getInt("prod_no"));
-			productVO.setProdName(rs.getString("prod_name"));
-			productVO.setPrice(rs.getInt("price"));
-			productVO.setManuDate(rs.getString("manufacture_day"));
-			productVO.setRegDate(rs.getDate("reg_date"));
-			list.add(productVO);
+			Product product = new Product();
+			product.setProdNo(rs.getInt("prod_no"));
+			product.setProdName(rs.getString("prod_name"));
+			product.setPrice(rs.getInt("price"));
+			product.setRegDate(rs.getDate("reg_date"));
+			product.setProTranCode(rs.getString("tra").trim());
+			list.add(product);
+			
+			System.out.println("list product: "+product);
 		}
 		map.put("totalCount", new Integer(totalCount));
 		map.put("list", list);
@@ -128,7 +128,7 @@ public ProductVO findProduct(int prodNo) throws Exception {
  
 		return map;	
 	}
-	public void updateProduct(ProductVO productVO) throws Exception {
+	public void updateProduct(Product product) throws Exception {
 		
 		Connection con = DBUtil.getConnection();
  
@@ -138,15 +138,15 @@ public ProductVO findProduct(int prodNo) throws Exception {
 		
 		PreparedStatement pStmt = con.prepareStatement(sql);
 		
-		pStmt.setString(1,productVO.getProdName());
-		pStmt.setString(2,productVO.getProdDetail());
-		pStmt.setString(3,productVO.getManuDate().replace("-", ""));
-		pStmt.setInt(4,productVO.getPrice());
-		pStmt.setString(5,productVO.getFileName());
-		pStmt.setInt(6,productVO.getProdNo());
+		pStmt.setString(1,product.getProdName());
+		pStmt.setString(2,product.getProdDetail());
+		pStmt.setString(3,product.getManuDate().replace("-", ""));
+		pStmt.setInt(4,product.getPrice());
+		pStmt.setString(5,product.getFileName());
+		pStmt.setInt(6,product.getProdNo());
 		pStmt.executeUpdate();
 		
-		System.out.println("상품 정보 업데이트: "+productVO);
+		System.out.println("상품 정보 업데이트: "+product);
 		
 		pStmt.close();
 		con.close();

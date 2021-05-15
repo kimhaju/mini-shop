@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.product.impl.ProductServiceImpl;
-import com.model2.mvc.service.product.vo.ProductVO;
+import com.model2.mvc.service.domain.Product;
 
 public class UpdateProductViewAction extends Action{
 	
@@ -18,11 +18,11 @@ public class UpdateProductViewAction extends Action{
 	
 		
 		ProductService service = new ProductServiceImpl();
-		ProductVO productVO = service.getProduct(prodNo);
+		Product product = service.getProduct(prodNo);
 		
-		request.setAttribute("productVO", productVO);
+		request.setAttribute("product", product);
 		
-		System.out.println("업데이트 받은 상품->"+productVO);
+		System.out.println("업데이트 받은 상품->"+product);
 		
 		return "forward:/product/updateProductView.jsp";
 	}

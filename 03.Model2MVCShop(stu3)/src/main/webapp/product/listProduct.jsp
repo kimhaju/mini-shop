@@ -98,22 +98,22 @@
 		<td colspan="11" bgcolor="808285" height="1"></td>
 	</tr>
 	<c:set var="i" value="0" />
-	<c:forEach var="productVO" items="${list}">
+	<c:forEach var="product" items="${list}">
 		<c:set var="i" value="${i+1}"/>
 		<tr class="ct_list_pop">
 			<td align="center">${i}</td>
 			<td></td>
 		
 				<c:if test="${menu.equals('manage')}">
-			<td align="left"><a href="/getProduct.do?prodNo=${productVO.prodNo}&menu=manage">${productVO.prodName}</a></td>
+			<td align="left"><a href="/updateProductView.do?prodNo=${product.prodNo}&menu=manage">${product.prodName}</a></td>
 			</c:if>
 			<c:if test="${menu.equals('search')}">
-			<td align="left"><a href="/getProduct.do?prodNo=${productVO.prodNo}&menu=search">${productVO.prodName}</a></td>
+			<td align="left"><a href="/getProduct.do?prodNo=${product.prodNo}&menu=search">${product.prodName}</a></td>
 			</c:if>
 			<td></td>
-			<td align="left">${productVO.price}</td>
+			<td align="left">${product.price}</td>
 			<td></td>
-			<td align="left">${productVO.regDate}</td>		
+			<td align="left">${product.regDate}</td>		
 		</tr>
 		<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>

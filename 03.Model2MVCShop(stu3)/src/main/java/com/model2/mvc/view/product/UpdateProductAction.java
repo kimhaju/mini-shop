@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.product.impl.ProductServiceImpl;
-import com.model2.mvc.service.product.vo.ProductVO;
+import com.model2.mvc.service.domain.Product;
 
 public class UpdateProductAction extends Action{
 	@Override
@@ -15,24 +15,24 @@ public class UpdateProductAction extends Action{
 												HttpServletResponse response) throws Exception {	
 		int prodNo = Integer.parseInt(request.getParameter("prodNo"));
 		
-		ProductVO productVO=new ProductVO();
-		productVO.setProdNo(prodNo);
-		productVO.setProdName(request.getParameter("prodName"));
-		productVO.setProdDetail(request.getParameter("prodDetail"));
-		productVO.setManuDate(request.getParameter("manuDate"));
-		productVO.setPrice(Integer.parseInt(request.getParameter("price")));
-		productVO.setFileName(request.getParameter("fileName"));
+		Product product=new Product();
+		product.setProdNo(prodNo);
+		product.setProdName(request.getParameter("prodName"));
+		product.setProdDetail(request.getParameter("prodDetail"));
+		product.setManuDate(request.getParameter("manuDate"));
+		product.setPrice(Integer.parseInt(request.getParameter("price")));
+		product.setFileName(request.getParameter("fileName"));
 		
 		ProductService service=new ProductServiceImpl();
-		service.updateProduct(productVO);
+		service.updateProduct(product);
 		
-		HttpSession session=request.getSession();
+		//HttpSession session=request.getSession();
 		//int sessionNo = ((ProductVO)session.getAttribute("product")).getProdNo();
 	
 		//if(sessionNo.equals(prodNo)){
-		request.setAttribute("productVO", productVO);
+		request.setAttribute("product", product);
 		
-		System.out.println(" 값이 저장된 것을 확인 ."+productVO);
+		System.out.println(" 값이 저장된 것을 확인 ."+product);
 		//}	
 		return "forward:/product/getProduct.jsp";
 	}

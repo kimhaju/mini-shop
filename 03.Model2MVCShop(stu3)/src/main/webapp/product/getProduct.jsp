@@ -3,19 +3,6 @@
  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
- <%-- <%@ page import="com.model2.mvc.service.product.vo.ProductVO" %>
- <%@ page import="com.model2.mvc.common.util.CommonUtil"%>
- <%@ page import="com.model2.mvc.common.Search" %>
- <%@ page import="com.model2.mvc.service.domain.User" %>
- 
- 
-<%
-String menu = CommonUtil.null2str(request.getParameter("menu"));
-%>
- 
-<%
-	ProductVO productVO=(ProductVO)request.getAttribute("productVO");
-%>--%>	
  
 <html>
 <head>
@@ -56,7 +43,7 @@ String menu = CommonUtil.null2str(request.getParameter("menu"));
 		<td class="ct_write01">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105">${productVO.prodNo}</td>
+					<td width="105">${product.prodNo}</td>
 					<td></td>
 				</tr>
 			</table>
@@ -71,7 +58,7 @@ String menu = CommonUtil.null2str(request.getParameter("menu"));
 			상품명 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${productVO.prodName}</td>
+		<td class="ct_write01">${product.prodName}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -79,7 +66,7 @@ String menu = CommonUtil.null2str(request.getParameter("menu"));
 	<tr>
 		<td width="104" class="ct_write">상품 이미지</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${productVO.fileName}</td>
+		<td class="ct_write01">${product.fileName}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -87,7 +74,7 @@ String menu = CommonUtil.null2str(request.getParameter("menu"));
 	<tr>
 		<td width="104" class="ct_write">상품 상세정보</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${productVO.prodDetail}</td>
+		<td class="ct_write01">${product.prodDetail}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -98,7 +85,7 @@ String menu = CommonUtil.null2str(request.getParameter("menu"));
 		<td class="ct_write01">
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td height="26">${productVO.manuDate}</td>
+					<td height="26">${product.manuDate}</td>
 				</tr>
 			</table>
 		</td>
@@ -106,11 +93,13 @@ String menu = CommonUtil.null2str(request.getParameter("menu"));
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
+	
 	<tr>
 		<td width="104" class="ct_write">등록일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${productVO.regDate}</td>
+		<td class="ct_write01">${product.regDate}</td>
 	</tr>
+	
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
@@ -128,11 +117,11 @@ String menu = CommonUtil.null2str(request.getParameter("menu"));
 					</td> 			 
 					 <c:if test="${menu.equals('manage')}">
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-					 <a href="/updateProductView.do?prodNo=${productVO.prodNo}">수정</a></td>
+					 <a href="/updateProductView.do?prodNo=${product.prodNo}">수정</a></td>
 					 </c:if>
 					 <c:if test="${menu.equals('search')}">
 					 <td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-                     <a href="/purchaseProductView.do?prodNo=${productVO.prodNo}">구매</a></td>
+                     <a href="/addPurchaseView.do?prodNo=${product.prodNo}">구매</a></td>
 					</c:if>
 					
 					<td width="14" height="23">

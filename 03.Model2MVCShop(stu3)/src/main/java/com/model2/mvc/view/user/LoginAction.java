@@ -14,9 +14,10 @@ public class LoginAction extends Action{
 
 	@Override
 	public String execute(HttpServletRequest request,	HttpServletResponse response) throws Exception {
-		
+
 		User user=new User();
 		user.setUserId(request.getParameter("userId"));
+		String userId = user.getUserId();
 		user.setPassword(request.getParameter("password"));
 		
 		UserService userService=new UserServiceImpl();
@@ -24,6 +25,9 @@ public class LoginAction extends Action{
 		
 		HttpSession session=request.getSession();
 		session.setAttribute("user", dbUser);
+		session.setAttribute("userId", userId);
+		
+		System.out.println("userId  로그인 확인:"+userId);
 		
 		return "redirect:/index.jsp";
 	}
