@@ -42,7 +42,7 @@ public class ListSaleAction extends Action {
 		
 		Page resultPage	= 
 				new Page( currentPage, ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-	    System.out.println("ListPurchaseAction ����Ʈ ���� ::"+resultPage);
+	    System.out.println("ListPurchaseAction 판매목록 조회  ::"+resultPage);
 
 	    request.setAttribute("list2", map.get("list2"));
 		request.setAttribute("search", search);

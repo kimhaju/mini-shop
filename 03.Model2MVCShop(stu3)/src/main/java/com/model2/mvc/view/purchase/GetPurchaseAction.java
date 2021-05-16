@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.purchase.PurchaseService;
 import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
-import com.model2.mvc.service.purchase.vo.PurchaseVO;
+import com.model2.mvc.service.domain.Purchase;
 
 
 public class GetPurchaseAction extends Action{
@@ -17,11 +17,11 @@ public class GetPurchaseAction extends Action{
 		int tranNo = Integer.parseInt(request.getParameter("tranNo"));
 		
 		PurchaseService service=new PurchaseServiceImpl();
-		PurchaseVO purchaseVO=service.getPurchase(tranNo);
+		Purchase purchase=service.getPurchase(tranNo);
 		
-		request.setAttribute("purchaseVO", purchaseVO);
+		request.setAttribute("purchase", purchase);
 		
-		System.out.println("get purchase action ±∏∏≈¡∂»∏ øœ∑· :"+purchaseVO);
+		System.out.println("get purchase action ÌôïÏù∏Îê® :"+purchase);
 
 		return "forward:/purchase/getPurchase.jsp";
 	}

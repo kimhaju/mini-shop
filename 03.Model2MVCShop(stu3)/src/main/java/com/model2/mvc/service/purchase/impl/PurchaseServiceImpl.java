@@ -5,7 +5,7 @@ import java.util.Map;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.purchase.PurchaseService;
 import com.model2.mvc.service.purchase.dao.PurchaseDAO;
-import com.model2.mvc.service.purchase.vo.PurchaseVO;
+import com.model2.mvc.service.domain.Purchase;
 
 public class PurchaseServiceImpl implements PurchaseService {
 	
@@ -17,16 +17,16 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public void addPurchase(PurchaseVO purchaseVO) throws Exception {
-		purchaseDAO.insertPurchase(purchaseVO);
+	public void addPurchase(Purchase purchase) throws Exception {
+		purchaseDAO.insertPurchase(purchase);
 
 	}
 	@Override
-	public PurchaseVO getPurchase(int tranNo) throws Exception {
+	public Purchase getPurchase(int tranNo) throws Exception {
 		return purchaseDAO.findPurchase(tranNo);
 	}
 	@Override
-	public PurchaseVO getPurchase2(int ProdNo) throws Exception {
+	public Purchase getPurchase2(int ProdNo) throws Exception {
 		
 		return purchaseDAO.findPurchase2(ProdNo);
 	}
@@ -43,16 +43,16 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public void updatePurcahse(PurchaseVO purchaseVO) throws Exception {
+	public void updatePurcahse(Purchase purchase) throws Exception {
 		// TODO Auto-generated method stub
-		purchaseDAO.updatePurchase(purchaseVO);
+		purchaseDAO.updatePurchase(purchase);
 
 	}
 
 	@Override
-	public void updateTranCode(PurchaseVO purchaseVO) throws Exception {
+	public void updateTranCode(Purchase purchase) throws Exception {
 		// TODO Auto-generated method stub
-		purchaseDAO.updateTranCode(purchaseVO);
+		purchaseDAO.updateTranCode(purchase);
 
 	}
 

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.purchase.PurchaseService;
 import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
-import com.model2.mvc.service.purchase.vo.PurchaseVO;
+import com.model2.mvc.service.domain.Purchase;
 
 public class UpdateTranCodeAction extends Action {
 	@Override
@@ -19,10 +19,10 @@ public class UpdateTranCodeAction extends Action {
 			//PurchaseVO purchaseVO = new PurchaseVO();	
 			
 			PurchaseService service=new PurchaseServiceImpl();
-			PurchaseVO purchaseVO=service.getPurchase2(prodNo);
+			Purchase purchase=service.getPurchase2(prodNo);
 						
-			service.updateTranCode(purchaseVO);
-			System.out.println("trancode action °ª: "+purchaseVO);
+			service.updateTranCode(purchase);
+			System.out.println("trancode action ï¿½ï¿½: "+purchase);
 			
 			return "forward:/listProduct.do?menu=manage";
 				

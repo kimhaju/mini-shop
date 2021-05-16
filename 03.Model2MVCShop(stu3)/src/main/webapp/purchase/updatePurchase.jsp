@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 
-<%@ page import="com.model2.mvc.service.purchase.vo.*" %>
-<%@ page import="com.model2.mvc.service.user.*" %>
-<%
-PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -37,7 +33,7 @@ function resetData() {
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="updatePurchase"  action="/updatePurchase.do?tranNo=<%=purchaseVO.getTranNo()%>"  method="post">
+<form name="updatePurchase"  action="/updatePurchase.do?tranNo=${purchase.tranNo}"  method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -65,9 +61,8 @@ function resetData() {
 	<tr>
 		<td width="104" class="ct_write">구매자아이디</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<%System.out.println(" jsp로 들어오는 유저 아이디 값"+purchaseVO.getBuyer().getUserId()); %>
-		<td class="ct_write01"><%=purchaseVO.getBuyer().getUserId() %></td>
-		<input type="hidden" name="buyerId" value="<%=purchaseVO.getBuyer().getUserId() %>">
+		<td class="ct_write01">${purchase.buyer.userId}</td> 
+		<input type="hidden" name="buyerId" value="${purchase.buyer.userId}">
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -91,7 +86,7 @@ function resetData() {
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverName" 	class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getReceiverName() %>" />
+							maxLength="20" value="${purchase.receiverName}" /> 
 		</td>
 	</tr>
 	<tr>
@@ -102,7 +97,7 @@ function resetData() {
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverPhone" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getReceiverPhone() %>" />
+							maxLength="20" value="${purchase.receiverPhone}" /> 
 		</td>
 	</tr>
 
@@ -114,7 +109,7 @@ function resetData() {
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverAddr" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getDivyAddr() %>" />
+							maxLength="20" value=" ${purchase.divyAddr}" /> 
 		</td>
 	</tr>
 	<tr>
@@ -125,7 +120,7 @@ function resetData() {
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverRequest" 	class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getDivyRequest() %>" />
+							maxLength="20" value="${purchase.divyRequest}" />  
 		</td>
 	</tr>
 	<tr>
@@ -156,7 +151,7 @@ function resetData() {
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
-					<a href="/updatePurchaseView.do?tranNo=<%=purchaseVO.getTranNo()%>">수정</a>
+					<a href="/updatePurchaseView.do?tranNo=${purchase.tranNo}">수정</a> 
 				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>

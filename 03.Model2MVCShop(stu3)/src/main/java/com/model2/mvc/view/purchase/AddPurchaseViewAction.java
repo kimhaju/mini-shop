@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.product.impl.ProductServiceImpl;
-import com.model2.mvc.service.product.vo.ProductVO;
+import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.user.UserService;
 import com.model2.mvc.service.user.impl.UserServiceImpl;
 import com.model2.mvc.service.domain.User;
@@ -27,12 +27,12 @@ public class AddPurchaseViewAction extends Action{
 		User user = userservice.getUser(userId);
 		
 		ProductService productservice = new ProductServiceImpl();
-		ProductVO productVO = productservice.getProduct(prodNo);
+		Product product = productservice.getProduct(prodNo);
 		
 		request.setAttribute("user", user);
-		request.setAttribute("productVO", productVO);
+		request.setAttribute("product", product);
 		
-		System.out.println("±∏∏≈ªÛ«∞ »≠∏È ∫‰ ¡∂»∏ øœ∑·: "+productVO);
+		System.out.println("ÏÉÅÌíà Íµ¨Îß§ Ï∂îÍ∞Ä : "+product);
 		
 		
 		return "forward:/purchase/addPurchaseView.jsp";

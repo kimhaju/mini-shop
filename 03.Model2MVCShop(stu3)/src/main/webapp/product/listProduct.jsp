@@ -113,7 +113,37 @@
 			<td></td>
 			<td align="left">${product.price}</td>
 			<td></td>
-			<td align="left">${product.regDate}</td>		
+			<td align="left">${product.regDate}</td>
+			<td></td>
+		<td align="left">
+		<c:if test="${product.proTranCode.equals('0')}">
+		판매중
+		</c:if>
+		<c:if test="${menu.equals('manage') && (product.proTranCode.equals('1'))}">
+		구매완료<a href="/updateTranCode.do?prodNo=${product.prodNo}">배송하기</a>
+		</c:if>
+		
+		<c:if test="${menu.equals('manage') && (product.proTranCode.equals('2'))}">
+		배송중
+		</c:if>
+		
+		<c:if test="${menu.equals('manage') && (product.proTranCode.equals('3'))}">
+		배송완료
+		</c:if>
+		
+		<c:if test="${menu.equals('search') && (product.proTranCode.equals('1'))}">
+		매진 
+		</c:if>
+		
+		<c:if test="${menu.equals('search') && (product.proTranCode.equals('2'))}">
+		매진 
+		</c:if>
+		
+		<c:if test="${menu.equals('search') && (product.proTranCode.equals('3'))}">
+		매진
+		</c:if>
+		
+		</td>		
 		</tr>
 		<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
