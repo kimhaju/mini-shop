@@ -32,7 +32,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 	@Override
 	public Map<String, Object> getPurchaseList(Search search, String buyerId) throws Exception {
-		System.out.println("ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®: ");
+		System.out.println("°ª µé¾î¿À´Â°Å È®ÀÎ : ");
 		return purchaseDAO.getPurchaseList(search, buyerId);
 	}
 

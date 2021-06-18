@@ -41,7 +41,7 @@ public class PurchaseDAO {
 		
 		pStmt.executeUpdate();
 		
-		System.out.println("dao addpurchase 구매상품 추가 완료: "+pStmt);
+		System.out.println("dao addpurchase  : "+ sql);
 		
 		con.close();
 	}
@@ -76,7 +76,7 @@ public class PurchaseDAO {
 			purchase.setDivyDate(String.valueOf(rs.getDate("dlvy_Date")));	
 		}
 		
-		System.out.println("dao getpurchase 구매상품 조회:"+purchase);
+		System.out.println("dao getpurchase :"+purchase);
 		
 		rs.close();
 		pStmt.close();
@@ -115,7 +115,7 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 			purchase.setDivyDate(String.valueOf(rs.getDate("dlvy_Date")));	
 		}
 		
-		System.out.println("dao getpurchase2 구매상품 조회 2 :"+purchase);
+		System.out.println("dao getpurchase2 :"+purchase);
 		
 		rs.close();
 		pStmt.close();
@@ -133,6 +133,7 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 		String sql = "SELECT * FROM users u, transaction t"
 				+ " WHERE u.user_id = t.buyer_id AND u.user_id= '"+buyerId+"' ORDER BY dlvy_date";
 		
+		
 		int totalCount = this.getTotalCount(sql);
 		System.out.println("purchaseDao :: totalCount  :: " + totalCount);
 		 
@@ -146,7 +147,9 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 		User user = service.getUser(buyerId);
 		
 		System.out.println("purchase dao :: "+ sql);
-		System.out.println("로그인 유저 아이디 값: "+buyerId);
+		System.out.println(": "+buyerId);
+		
+		System.out.println("purchaseList: "+sql);
 			
 		List<Purchase> list = new ArrayList<Purchase>();	
 			while(rs.next()) {
@@ -176,7 +179,8 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 			pStmt.close();
 			con.close();
 			
-			System.out.println("purchasedaolist 구매상품 조회 확인 "+list);
+			System.out.println("purchasedaolist "+list);
+			
 
 			return map;	
 	}
@@ -199,7 +203,7 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 			
 		User user = new User();
 		
-		System.out.println("purchase dao :: "+ sql);
+		System.out.println("purchase dao sale :: "+ sql);
 		
 			
 		List<Purchase> list2 = new ArrayList<Purchase>();	
@@ -231,7 +235,7 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 			pStmt.close();
 			con.close();
 			
-			System.out.println("purchase sale 판매상품 조회 확인 "+list2);
+			System.out.println("purchase sale  "+list2);
 
 		
 		return map;
@@ -254,7 +258,7 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 		stmt.setInt(7, purchase.getTranNo());
 		stmt.executeUpdate();
 		
-		System.out.println("dao �뾽�뜲�씠�듃 �솗�씤:"+purchase);
+		System.out.println("dao :"+purchase);
 		con.close();
 	}
 	
@@ -272,13 +276,13 @@ public Purchase findPurchase2(int prodNo) throws Exception{
 		}
 		sql += " WHERE tran_no = ?";
 		
-	    System.out.println("trancode update 판매상태 변경  :"+sql);
+	    System.out.println("trancode update   :"+sql);
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setInt(1,purchase.getTranNo());
 		stmt.executeUpdate();
 		
-		System.out.println("tran code 판매상태 변경 : "+purchase);
+		System.out.println("tran code: "+purchase);
 		
 		con.close();
 		
